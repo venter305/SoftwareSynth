@@ -25,6 +25,7 @@ class Synth{
 		Synth(int);
 		int newChannel(std::string);
 		int loadChannel(std::string,int);
+		void ClearChannels();
 		uint32_t playNote(int,Note&,double);
 };
 

@@ -1,5 +1,4 @@
-#ifndef SOUNDFONT_MANAGER_
-#define SOUNDFONT_MANAGER_
+#pragma once
 
 #include <cstdint>
 #include <vector>
@@ -91,6 +90,6 @@ class SoundFontManager{
 		
 		int loadInstrument(std::string);
 		int loadInstrument(int);
+		void PrintInstrumentNames();
 };
 
-#endif

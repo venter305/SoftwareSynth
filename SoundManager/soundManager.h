@@ -24,7 +24,7 @@ class SoundManager {
 		static unsigned int sampleRate;
 		static bool start;
 
-		SoundManager(int);
+		SoundManager(int sRate, std::string name);
 		~SoundManager();
 
 		static uint32_t (*UserFunc)(double);

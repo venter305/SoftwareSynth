@@ -6,6 +6,7 @@ GraphicsEngine/GUI/Layout
 GraphicsEngine/Input
 SoundManager
 src
+r8brain-free-src
 endef
 
 define IncludePaths
@@ -13,7 +14,15 @@ define IncludePaths
 .
 endef
 
-_OBJ=$(foreach dir,$(SourcePaths),$(patsubst %.cpp,%.o,$(wildcard $(dir)/*.cpp)))
+define ExcludeFiles
+r8brain-free-src/example.cpp
+endef
+
+_CPPFILES=$(foreach dir,$(SourcePaths),$(wildcard $(dir)/*.cpp))
+
+CPPFILES=$(filter-out $(ExcludeFiles),$(_CPPFILES))
+
+_OBJ=$(foreach files,$(CPPFILES),$(patsubst %.cpp,%.o,$(files)))
 
 OBJ=$(patsubst %,./obj/%,$(_OBJ))
 

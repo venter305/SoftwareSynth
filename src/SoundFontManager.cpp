@@ -273,3 +273,9 @@ int SoundFontManager::loadInstrument(int index){
 
 	return instruments.size()-1;
 }
+
+void SoundFontManager::PrintInstrumentNames(){
+	for (auto instr : instrList){
+		std::cout << instr.name << std::endl;
+	}
+}

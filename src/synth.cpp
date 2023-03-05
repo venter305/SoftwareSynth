@@ -7,8 +7,6 @@
 #include "TriangleWave.h"
 #include "NoiseWave.h"
 
-using namespace std;
-
 Synth::Synth(int sRate) : sampleRate(sRate){
 	attackTime = 0.01;
 	decayTime = 0.01;
@@ -18,6 +16,9 @@ Synth::Synth(int sRate) : sampleRate(sRate){
 	vibratoFreq = 1;
 	
 
+}
+
+void Synth::ClearChannels(){
 }
 
 int Synth::newChannel(string name){
@@ -157,20 +158,16 @@ uint32_t Synth::playNote(int channel, Note &note, double dTime){
 			
 			}
 
-	//	
-	//		cout << outNum << endl;
-			//note.startLoopIndex = note.startLoopIndex/((double)preSampleSize/outNum);
-			//note.endLoopIndex = note.endLoopIndex/((double)preSampleSize/outNum);
 			double sRatio = (double)note.samples[i].preSRate/note.samples[i].sampleRate;
 			int offset = (preSampleSize/sRatio)-outNum; 
 			int size = (note.samples[i].endLoopIndex-note.samples[i].startLoopIndex);
 			note.samples[i].startLoopIndex = (note.samples[i].startLoopIndex/sRatio)-offset;
 			note.samples[i].endLoopIndex = (note.samples[i].endLoopIndex/sRatio)-offset;
-	//		cout << note.startLoopIndex << ' ' << note.endLoopIndex << endl;
-	//		cout << note.sample[note.startLoopIndex] << ' ' << note.sample[note.endLoopIndex] << endl;
 			note.resampled = true;
 		}
 	}
 	
+	
 	return channels[channel]->Output(&note,dTime,sampleRate);
 }
+
